@@ -1,0 +1,24 @@
+// Creator: RBR Ltd.
+// Create time: 2025-03-25T14:47:11
+// Instrument model firmware and serialID: RBRmaestro³ 1.148 231853
+// Sample period: 0.5 second
+// Processing history:
+//	/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130.rsk opened using pyRSKtools v1.1.1.
+//	Sea pressure calculated using an atmospheric pressure of 10.1325 dbar.
+//	Zero-order hold corrected for channel(s) conductivity, temperature, pressure, temperature1, dissolved_o2_concentration, par, ph, unknown, unknown1, unknown2, sea_pressure, depth, salinity, speed_of_sound, specific_conductivity, dissolved_o2_saturation. Hold points were treated with interp.
+//	Smooth for channel(s) t, e, m, p, e, r, a, t, u, r, e with the method of boxcar.
+//	Channel temperature aligned using lag(s) 0,0 and shiftfill zeroorderhold
+//	Depth calculated using the TEOS-10 library and a latitude of 48.35 degrees
+//	Profiling velocity calculated from depth, filtered with a windowLength of 3 samples.
+//	Remove loops with the threshold of 0.1 m/s.
+//	Sea pressure calculated using an atmospheric pressure of 10.1325 dbar.
+//	Depth calculated using the TEOS-10 library and a latitude of 45.0 degrees
+//	Profiling velocity calculated from depth, filtered with a windowLength of 3 samples.
+//	Practical Salinity derived using TEOS-10 library
+//	Potential density anomaly derived using the TEOS-10 library.
+//	Binned with respect to sea_pressure using [0.5 8. ] boundaries with [5.] dbar bin size.
+// Comment: for Emilie
+
+// timestamp(yyyy-mm-ddTHH:MM:ss.FFF),    depth(m),    temperature(°C),    salinity(PSU),    dissolved_o2_saturation(%),    cast_direction
+2024-01-30T08:56:30.700,    3.08438598700624,    10.515614790482953,    33.698251451738024,    99.8536136973988,    d
+2024-01-30T08:57:47.907,    6.41145668909968,    10.515889824761283,    33.715778491255215,    99.88606092664931,    d
