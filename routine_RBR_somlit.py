@@ -30,7 +30,9 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/s
     plt.show()
 '''
 
-# Advanced processing below
+# Advanced processing below for SOMLIT point in Ste Anne du Porzic
+
+# Hips and tricks with pyrsktools commands
 
 # Do rsk.regions to have a list of RegionCast and RegionProfile
 # rsk.printchannels to view the metadat info of the probe
@@ -39,8 +41,9 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/s
 # rsk.plotdata, plt.show() to plot as timeseries
 
 
-# using the method below is the 
-#with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/sample.rsk") as rsk:
+# using the method below is the right way to read the data
+# with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/sample.rsk") as rsk:
+    
 with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130.rsk") as rsk:
    
     # read the data first
@@ -49,6 +52,9 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/m
     
     # Use atmopsheric pressure patm to calculate sea pressure
     # Enter sea pressure of the somlit day here
+    # In an ideal way the barometric pressure must be measured at each somlit and entered here
+    # remind: -1hPa (air pressure) = +1cm sealevel
+    # -100hPa = -1dbar = +1m sealevel
     patm = 10.1325
     rsk.deriveseapressure(patm)
     
@@ -61,7 +67,7 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/m
     # Low-pass filtering, windowlength is the number of values to use to calculate an average
     # We run at 2Hz, it is slower than the RBR (4Hz) so we won't apply any filter
     
-    rsk.smooth(channels = ["temperature"], windowLength = 5)
+    # rsk.smooth(channels = ["temperature"], windowLength = 5)
     
     # realignement CT
     # time lag of the temperature sensor
@@ -69,9 +75,13 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/m
     # this lag must be slow << 10 ms (from processing specs, pyrsktools)
     # choosen arbitrary 5 ms shift of the temperature data earlier
     # lag = -0.005
+    
+    #there is an issue here
+    
     rsk.alignchannel("temperature", 0)
     
     # removing loops due to swell and probe measuring its wake
+    # this might important in shallow coastal waters just as somlit location
       
     # first derivedepth to calculate depth from corrected sea pressure
     # latitude of somlit point at Plouzané written below
@@ -83,8 +93,9 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/m
     rsk.derivevelocity()
     
     # then remove loops
-    # speed treshold 0.25m/s mini profiling speed to consider
-    rsk.removeloops(direction= "down", threshold= 0.1)
+    # speed treshold 0.1m/s mini profiling speed to consider
+    # this values is important as all the data below this speed value are removed
+    rsk.removeloops(direction= "down", threshold= 0.05)
     
     # Derived variables
     # Salinity
@@ -106,8 +117,10 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/m
     # direction = "up"
     # )
     
+
+    
 fig1, axes1 = rsk.plotprofiles(channels=["salinity"],profiles=range(1),direction="down")
-rsk.binaverage(binSize = 5, boundary = 0.5, direction = "down")
+rsk.binaverage(binSize = 0.25, boundary = 0.5, direction = "down")
 fig2, axes2 = rsk.plotprofiles(channels=["salinity"],profiles=range(1),direction="down")
 
 fig, axes = rsk.mergeplots(
@@ -120,7 +133,7 @@ for ax in axes:
 plt.legend(labels=["Original data","Processed data"])
 plt.show()
 
-rsk.RSK2CSV(channels = ["depth","temperature","salinity","dissolved_o2_saturation"], profiles= range(0,3), comment= "for Emilie")
+rsk.RSK2CSV(channels = ["temperature","par","conductivity","dissolved_o2_concentration","salinity","depth"], profiles= range(0,3), comment= "for Emilie")
     
     
 '''    
