@@ -1,11 +1,11 @@
 // Creator: RBR Ltd.
-// Create time: 2025-03-31T07:55:51
-// Instrument model firmware and serialID: RBRmaestro³ 1.148 231853
+// Create time: 2025-03-31T08:00:47
+// Instrument model firmware and serialID: RBRmaestro3 1.148 231853
 // Sample period: 0.5 second
 // Processing history:
-//	/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130.rsk opened using pyRSKtools v1.1.1.
+//	/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130_rebuilt.rsk opened using pyRSKtools v1.1.1.
 //	Sea pressure calculated using an atmospheric pressure of 10.1325 dbar.
-//	Zero-order hold corrected for channel(s) conductivity, temperature, pressure, temperature1, dissolved_o2_concentration, par, ph, unknown, unknown1, unknown2, sea_pressure, depth, salinity, speed_of_sound, specific_conductivity, dissolved_o2_saturation. Hold points were treated with interp.
+//	Zero-order hold corrected for channel(s) conductivity, temperature, pressure, temperature1, dissolved_o2_concentration, par, ph, chlorophyll-a, fdom, turbidity, sea_pressure, depth, salinity, speed_of_sound, specific_conductivity, dissolved_o2_saturation. Hold points were treated with interp.
 //	Channel temperature aligned using lag(s) 0,0 and shiftfill zeroorderhold
 //	Depth calculated using the TEOS-10 library and a latitude of 48.35 degrees
 //	Profiling velocity calculated from depth, filtered with a windowLength of 3 samples.
@@ -18,7 +18,7 @@
 //	Binned with respect to sea_pressure using [0.5 8. ] boundaries with [0.25] dbar bin size.
 // Comment: for Emilie
 
-// timestamp(yyyy-mm-ddTHH:MM:ss.FFF),    temperature(°C),    par(µMol/m²/s),    conductivity(mS/cm),    dissolved_o2_concentration(µmol/l),    salinity(PSU),    depth(m),    cast_direction
+// timestamp(yyyy-mm-ddTHH:MM:ss.FFF),    temperature(°C),    par(µMol/m²/s),    conductivity(mS/cm),    dissolved_o2_concentration(µmol/L),    salinity(PSU),    depth(m),    cast_direction
 2024-01-30T08:52:46.750,    10.508392333984375,    36.723877588907875,    37.30610466003418,    283.52587890625,    33.72199099684513,    0.6142660140532706,    d
 2024-01-30T08:52:49.250,    10.510711669921875,    32.87725210189819,    37.3030104637146,    281.6019744873047,    33.71661980435814,    0.8554780283740886,    d
 2024-01-30T08:52:51.500,    10.513525390625,    30.655908203125,    37.29005432128906,    281.8654052734375,    33.70084977831887,    1.1366748112650549,    d
