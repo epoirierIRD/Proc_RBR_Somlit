@@ -39,6 +39,7 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/s
 # rsk.channels to get the channels recorded, use the longName in the rsk.plotdata('LongName')
 # rsk.data is a numpy array with all the values + channels names
 # rsk.plotdata, plt.show() to plot as timeseries
+# print(rsk) gives the status of the rsk file, ex nb of regions populated
 
 
 # ---------------------------------------------------------------------------
@@ -55,6 +56,10 @@ def procRSK (path, patm, latitude):
        
         # read the data first
         rsk.readdata()
+        
+        # computing profiles
+        # args pressure treshold and conductivity treshold
+        rsk.computeprofiles(1,0.05)
        
         
         # Use atmopsheric pressure patm to calculate sea pressure
@@ -111,6 +116,8 @@ def procRSK (path, patm, latitude):
     
         rsk.derivesalinity()
         rsk.derivesigma()
+        
+        rsk.plotdata(channels="depth")
     
          
         #bin average on depth 0.25dbar or 25 cm
@@ -134,7 +141,7 @@ def procRSK (path, patm, latitude):
         # 
         fig, axes = rsk.plotprofiles(
         channels=["conductivity", "temperature", "salinity"],
-        profiles=range(0),
+        profiles=range(1,2),
         direction="both",
         )
         plt.show()

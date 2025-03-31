@@ -1,0 +1,59 @@
+// Creator: RBR Ltd.
+// Create time: 2025-03-31T09:44:11
+// Instrument model firmware and serialID: RBRmaestro3 1.148 231853
+// Sample period: 0.5 second
+// Processing history:
+//	/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130_rebuilt.rsk opened using pyRSKtools v1.1.1.
+//	Sea pressure calculated using an atmospheric pressure of 10.1325 dbar.
+//	Zero-order hold corrected for channel(s) conductivity, temperature, pressure, temperature1, dissolved_o2_concentration, par, ph, chlorophyll-a, fdom, turbidity, sea_pressure, depth, salinity, speed_of_sound, specific_conductivity, dissolved_o2_saturation. Hold points were treated with interp.
+//	Channel temperature aligned using lag(s) 0,0,0,0,0,0 and shiftfill zeroorderhold
+//	Depth calculated using the TEOS-10 library and a latitude of 48.35 degrees
+//	Profiling velocity calculated from depth, filtered with a windowLength of 3 samples.
+//	Remove loops with the threshold of 0.05 m/s.
+//	Sea pressure calculated using an atmospheric pressure of 10.1325 dbar.
+//	Depth calculated using the TEOS-10 library and a latitude of 45.0 degrees
+//	Profiling velocity calculated from depth, filtered with a windowLength of 3 samples.
+//	Practical Salinity derived using TEOS-10 library
+//	Potential density anomaly derived using the TEOS-10 library.
+//	Binned with respect to sea_pressure using [ 0.5 10. ] boundaries with [0.25] dbar bin size.
+// Comment: for Emilie
+
+// timestamp(yyyy-mm-ddTHH:MM:ss.FFF),    temperature(°C),    chlorophyll-a(ug/l),    par(µMol/m²/s),    conductivity(mS/cm),    dissolved_o2_concentration(µmol/L),    turbidity(FTU),    salinity(PSU),    depth(m),    density_anomaly(kg/m³),    cast_direction
+2024-01-30T08:59:41.500,    10.516632080078125,    0.8920000195503235,    50.80498123168945,    37.279720306396484,    281.0566101074219,    2.8564999103546143,    33.687752189793386,    0.7428254975274454,    25.841591156698996,    d
+2024-01-30T08:59:42.250,    10.516632080078125,    0.968000054359436,    47.52236366271973,    37.27974891662598,    281.13169860839844,    2.7925000190734863,    33.68772354846958,    0.8710416623434479,    25.841571456637325,    d
+2024-01-30T08:59:43.750,    10.516300201416016,    0.923625037074089,    43.182363510131836,    37.281107902526855,    280.7946243286133,    2.39677494764328,    33.689286984208465,    1.118973875657393,    25.842852446440077,    d
+2024-01-30T08:59:46.125,    10.516155242919922,    0.8730000257492065,    39.99748611450195,    37.282288551330566,    280.6095199584961,    2.516612410545349,    33.690523250655176,    1.3105615875504615,    25.84384491448384,    d
+2024-01-30T08:59:48.250,    10.516197204589844,    1.3518750369548798,    35.37030601501465,    37.28635597229004,    280.3743591308594,    2.323237419128418,    33.69444178760335,    1.6122391810561432,    25.846897509858934,    d
+2024-01-30T08:59:49.750,    10.5162353515625,    0.8942500352859497,    31.450139045715332,    37.28840255737305,    280.9984436035156,    2.3715749979019165,    33.69633999391995,    1.8928605272165053,    25.848375899540088,    d
+2024-01-30T08:59:51.000,    10.516311645507812,    0.9231667121251425,    28.973601659138996,    37.288649241129555,    281.39215087890625,    2.8263165950775146,    33.696425730482964,    2.097889165289269,    25.848433674880045,    d
+2024-01-30T08:59:54.250,    10.516319274902344,    0.9522500485181808,    26.19140625,    37.28990173339844,    280.30810546875,    2.4952999353408813,    33.69757188337885,    2.336775372362923,    25.849330430381315,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d

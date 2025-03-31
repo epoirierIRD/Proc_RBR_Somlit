@@ -1,12 +1,12 @@
 // Creator: RBR Ltd.
-// Create time: 2025-03-31T09:28:22
+// Create time: 2025-03-31T10:30:54
 // Instrument model firmware and serialID: RBRmaestro3 1.148 231853
 // Sample period: 0.5 second
 // Processing history:
 //	/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130_rebuilt.rsk opened using pyRSKtools v1.1.1.
 //	Sea pressure calculated using an atmospheric pressure of 10.1325 dbar.
 //	Zero-order hold corrected for channel(s) conductivity, temperature, pressure, temperature1, dissolved_o2_concentration, par, ph, chlorophyll-a, fdom, turbidity, sea_pressure, depth, salinity, speed_of_sound, specific_conductivity, dissolved_o2_saturation. Hold points were treated with interp.
-//	Channel temperature aligned using lag(s) 0,0 and shiftfill zeroorderhold
+//	Channel temperature aligned using lag(s) 0,0,0,0 and shiftfill zeroorderhold
 //	Depth calculated using the TEOS-10 library and a latitude of 48.35 degrees
 //	Profiling velocity calculated from depth, filtered with a windowLength of 3 samples.
 //	Remove loops with the threshold of 0.05 m/s.
@@ -57,3 +57,33 @@
 2024-01-30T08:52:42.500,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
 2024-01-30T08:52:42.500,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
 2024-01-30T08:52:42.500,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    d
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
+2024-01-30T08:59:41.000,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    nan,    u
