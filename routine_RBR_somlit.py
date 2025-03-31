@@ -40,6 +40,11 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/s
 # rsk.data is a numpy array with all the values + channels names
 # rsk.plotdata, plt.show() to plot as timeseries
 # print(rsk) gives the status of the rsk file, ex nb of regions populated
+# rsk.data[39] reads the full line for recording n°39, 39 is the indice
+# rsk.regions[1] to call region 1
+# 1 profile c'est deux cast, on voit bien cela dans profile.regions
+# in profile we have the beginning of downcast and the end of up cast in terms of time
+# the regionID values are unclear
 
 
 # ---------------------------------------------------------------------------
@@ -47,7 +52,7 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/s
 # args: - rsk file name
 #       - patm, atmospheric pressure
 
-def procRSK (path, patm, latitude):
+def procRSK (path, patm, latitude, profile_nb):
 
 # using the method below is the right way to read the data
 # with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/sample.rsk") as rsk:
@@ -56,11 +61,7 @@ def procRSK (path, patm, latitude):
        
         # read the data first
         rsk.readdata()
-        
-        # computing profiles
-        # args pressure treshold and conductivity treshold
-        rsk.computeprofiles(1,0.05)
-       
+        print(rsk)
         
         # Use atmopsheric pressure patm to calculate sea pressure
         # Enter sea pressure of the somlit day here
@@ -74,6 +75,19 @@ def procRSK (path, patm, latitude):
         
         # Correct for A2D (analog to digital) zero-holder, find the missing samples and interpolate
         rsk.correcthold(action = "interp")
+        
+        # computing profiles
+        # args pressure treshold and conductivity treshold
+        # works fine to detect 3 profiles
+        rsk.computeprofiles(0.5,5)
+        print(rsk)
+        print(rsk.regions)
+        
+        # get the indices for up and down profiles
+        upcastIndices = rsk.getprofilesindices(direction="up")
+        downcastIndices = rsk.getprofilesindices(direction="down")
+        
+       
         
         # Low-pass filtering, windowlength is the number of values to use to calculate an average
         # We run at 2Hz, it is slower than the RBR (4Hz) so we won't apply any filter
@@ -134,20 +148,21 @@ def procRSK (path, patm, latitude):
         # Plots
         # Plot de timeseries of processed data, choose parameters on each plot
         rsk.readprocesseddata()
-        rsk.plotdata(channels=["depth","temperature","salinity"])
-        rsk.plotdata(channels=["depth","chlorophyll-a","turbidity"])
-        rsk.plotdata(channels=["depth","dissolved_o2_concentration","par"])
+        rsk.plotdata(channels=["depth","temperature","salinity"], profile = profile_nb)
+        rsk.plotdata(channels=["depth","chlorophyll-a","turbidity"], profile = profile_nb)
+        rsk.plotdata(channels=["depth","dissolved_o2_concentration","par"], profile = profile_nb)
         plt.show() 
         # 
         fig, axes = rsk.plotprofiles(
         channels=["conductivity", "temperature", "salinity"],
-        profiles=range(1,2),
+        # we choose profile 1 as it is the good one in our case
+        profiles=profile_nb,
         direction="both",
         )
         plt.show()
         
         # save required variables in a csv with the correct format
-        rsk.RSK2CSV(channels = ["temperature","chlorophyll-a","par","conductivity","dissolved_o2_concentration","turbidity","salinity","depth","density_anomaly"], profiles= range(0,3), comment= "for Emilie")
+        rsk.RSK2CSV(channels = ["temperature","chlorophyll-a","par","conductivity","dissolved_o2_concentration","turbidity","salinity","depth","density_anomaly"], profiles=1, comment= "for Emilie")
         
         #output
         return rsk
@@ -200,8 +215,10 @@ plt.show()
 path = "/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130_rebuilt.rsk"
 patm = 10.1325
 latitude = 48.35
+# note really a good idea to choose only one profile because it removes the upcast one
+profile_nb = 1
 # calling processing function
-rsk = procRSK (path, patm, latitude)
+rsk = procRSK (path, patm, latitude, profile_nb)
 
 
 
