@@ -1,3 +1,4 @@
+# WORK IN PROGRESS
 # Proc_RBR_Somlit
 Processing of RBR ctd cast for Somlit coastal observatory in Plouzane, France.
 The goal is to create a 'routine' for the RBR maestro data to process the raw binary rsk file and save it to a csv file with the same format and processing that used to be applied to SBE data.
