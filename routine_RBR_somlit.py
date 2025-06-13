@@ -30,27 +30,40 @@ with pyrsk.RSK("/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/s
     plt.show()
 '''
 
-# Advanced processing below for SOMLIT point in Ste Anne du Porzic
+# Advanced processing below for SOMLIT CTD profile point in Ste Anne du Porzic
 
 # Hips and tricks with pyrsktools commands
-
+## REGIONS
 # Do rsk.regions to have a list of RegionCast and RegionProfile
-# rsk.printchannels to view the metadat info of the probe
-# rsk.channels to get the channels recorded, use the longName in the rsk.plotdata('LongName')
-# rsk.data is a numpy array with all the values + channels names
-# rsk.plotdata, plt.show() to plot as timeseries
-# print(rsk) gives the status of the rsk file, ex nb of regions populated
-# rsk.data[39] reads the full line for recording n°39, 39 is the indice
+# the regionID values are unclear
+# rsk.regions envoie un tuple on fait rsk.regions[1] pour appeler la première valeur
+# et rsk.regions[1].regionID pour avoir le regionID de ce CAST
 # rsk.regions[1] to call region 1
 # 1 profile c'est deux cast, on voit bien cela dans profile.regions
 # in profile we have the beginning of downcast and the end of up cast in terms of time
-# the regionID values are unclear
+
+## CHANNELS
+# rsk.printchannels to view the metadat info of the probe
+# rsk.channels to get the channels recorded, use the longName in the rsk.plotdata('LongName')
+
+## DATA
+# rsk.data is a numpy array with all the values + channels names
+# print(rsk) gives the status of the rsk file, ex nb of regions populated
+# rsk.data[39] reads the full line for recording n°39, 39 is the indice
+
+# PLOT
+# rsk.plotdata, plt.show() to plot as timeseries
+
+
 
 
 # ---------------------------------------------------------------------------
 # Fonction to process a correctly rebuilt rsk file with all the channels inside, tridente included
+# 8,9,10, chloro, fdom, turbidity, order not checked
 # args: - rsk file name
 #       - patm, atmospheric pressure
+#       - latitude of the point
+#       - profile_nb you want to choose, good because in a prfile there is the up and down.
 
 def procRSK (path, patm, latitude, profile_nb):
 
@@ -76,12 +89,12 @@ def procRSK (path, patm, latitude, profile_nb):
         # Correct for A2D (analog to digital) zero-holder, find the missing samples and interpolate
         rsk.correcthold(action = "interp")
         
-        # computing profiles
-        # args pressure treshold and conductivity treshold
-        # works fine to detect 3 profiles
-        rsk.computeprofiles(0.5,5)
-        print(rsk)
-        print(rsk.regions)
+        # # computing profiles
+        # # args pressure treshold and conductivity treshold
+        # # works fine to detect 2 profiles, 2downcast, 2upcast and 2 profiles in rsk.regions
+        # rsk.computeprofiles(1,5)
+        # print(rsk)
+        # print(rsk.regions)
         
         # get the indices for up and down profiles
         upcastIndices = rsk.getprofilesindices(direction="up")
@@ -144,27 +157,27 @@ def procRSK (path, patm, latitude, profile_nb):
         
         # Print a list of channels in the rsk file
         rsk.printchannels()
-               
+         
         # Plots
         # Plot de timeseries of processed data, choose parameters on each plot
         rsk.readprocesseddata()
-        rsk.plotdata(channels=["depth","temperature","salinity"], profile = profile_nb)
-        rsk.plotdata(channels=["depth","chlorophyll-a","turbidity"], profile = profile_nb)
-        rsk.plotdata(channels=["depth","dissolved_o2_concentration","par"], profile = profile_nb)
+        rsk.plotdata(channels=["depth","temperature","salinity"], profile = profile_nb, direction = 'up')
+        #rsk.plotdata(channels=["depth","chlorophyll-a","turbidity"], profile = profile_nb, direction = 'up')
+        rsk.plotdata(channels=["depth","dissolved_o2_concentration","par"], profile = profile_nb, direction = 'up')
         plt.show() 
-        # 
+        # quality of the temp graph is poor
         fig, axes = rsk.plotprofiles(
-        channels=["conductivity", "temperature", "salinity"],
+        channels=["temperature", "salinity"],
         # we choose profile 1 as it is the good one in our case
         profiles=profile_nb,
-        direction="both",
+        direction="down",
         )
         plt.show()
         
-        # save required variables in a csv with the correct format
-        rsk.RSK2CSV(channels = ["temperature","chlorophyll-a","par","conductivity","dissolved_o2_concentration","turbidity","salinity","depth","density_anomaly"], profiles=1, comment= "for Emilie")
+        # # save required variables in a csv with the correct format
+        # rsk.RSK2CSV(channels = ["temperature","chlorophyll-a","par","conductivity","dissolved_o2_concentration","turbidity","salinity","depth","density_anomaly"], profiles=1, comment= "for Emilie")
         
-        #output
+        # #output
         return rsk
     
     
@@ -212,11 +225,11 @@ plt.show()
 # -------------------------------------------------------------------------
 # Main
 
-path = "/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130_rebuilt.rsk"
+path = "/home/epoirier1/Documents/PROJETS/2025/Proc_RBR_Somlit/rawdata/maestroP2I_231853_20240130.rsk"
 patm = 10.1325
 latitude = 48.35
 # note really a good idea to choose only one profile because it removes the upcast one
-profile_nb = 1
+profile_nb = 0
 # calling processing function
 rsk = procRSK (path, patm, latitude, profile_nb)
 
