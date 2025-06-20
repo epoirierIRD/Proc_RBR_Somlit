@@ -15,29 +15,25 @@ import RSKsomlit_plt as rsksplt
 import RSKsomlit_proc as rsksproc
 import sensor_uncertainties as sun
 
-
+'''
 # ------------------------------------MAIN-------------------------------------
 # 
 # Main
-# pc path
+# pc path of rsk file
 path_in = "/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240606/231853_20240607_1104 somlit 21.rsk"
-# Get the directory of main.py
+# Get the directory of main.py situated next to rsk file
 path_out = os.path.dirname(os.path.abspath(__file__))
 
 
-# enter parameters of your local processing and somlit point
-# must find a way to determine profile nb automatically
-patm = 10.1325
-latitude = 48.35
-# note really a good idea to choose only one profile because it removes the upcast one
+# enter parameters somlit point id and atmospheric pressure 
+site_id = 5
+patm = 10.1325 #dBar
 
-
-# calling processing function, we use the rsk object that have the same id as rsk_u and rsk_d processed files
-raw,rsk,rsk_d,rsk_u, profile_nb = rsksproc.procRSK (path_in, patm, latitude, path_out)
-
-#plotting
-for param in [
-      'conductivity',
+# list of parameters in the rsk file that we want in the csv to export
+# do not choose pressure, sea_pressure and depth, it does not work
+# might be to have an alert between parameters in the rsk and parameters we want to save:
+    # you cannot export parameters in csv if they are not in the rsk
+param = ['conductivity',
       'temperature',
       #'pressure',
       'temperature1',
@@ -48,35 +44,64 @@ for param in [
       'fdom',
       'turbidity',
       # 'sea_pressure',
-      # 'depth',
+      'depth',
       'salinity',
       # 'speed_of_sound',
       # 'specific_conductivity',
       # 'dissolved_o2_saturation',
       # 'velocity',
-      # 'density_anomaly'
-    ]:
+      'density_anomaly'
+      ]
+
+# calling processing function, we use the rsk object that has the same id as rsk_u and rsk_d processed files
+raw,rsk,rsk_d,rsk_u, profile_nb,file_output_folder,csv_d,csv_u = rsksproc.procRSK (path_in, patm, site_id, param, path_out)
+
+# Plot with loop on parameters except unworking ones
+# figures stored in appropriate directory
+# we exclude here reference channels
+exclude = ['pressure','sea_pressure','depth']
+for param in [ x for x in param if x not in exclude] :
        
     
-    # plot up and down casts processed on the same graph with uncertainties
-    # we can see that the been avergaging is not working on upcast: points are not aligned
-    # to be solved 
-    rsksplt.plot_up_down2(rsk_d, rsk_u, param, profile_nb, path_out)
+    # Plot up and down casts processed on the same graph with uncertainties
+    rsksplt.plot_up_down2(rsk_d, rsk_u, param, profile_nb, file_output_folder)
 
-    # plot raw and processed data for up and down casts on differents profiles    
+# Code an option if we want to choose the upward profile instead of the downward
 
-    # get the uncertainty for each param to use in the plots below
-    # uncertainty = sun.get_uncertainty(param)
-       
-    # for cast in ['down','up']:
-    #     if cast == 'down':
-    #         fig1, axes1 = rsksplt.plot_raw_proc(rsk_d, rsk, param, cast, profile_nb, uncertainty)
-    #     else:
-    #         fig2, axes2 = rsksplt.plot_raw_proc(rsk_u, rsk, param, cast, profile_nb, uncertainty)
+# Exporting to SOMLIT csv file format
+# function to convert the upcast and downcast csv files into the good format csv for SOMLIT DB
+# one file per cast downward and upward and stored in dedicated downcast and upcast folders
 
-# Add here a function to trim de chosen cast up or down once the graphs have been checked
+# below is the loop on the rsk files not used at the moment,
+# but still working on one file
+'''
+rsksproc.process_rsk_folder(
+    path_in="/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240606/",
+    path_out="/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240606/",
+    site_id=5,
+    patm = 10.1325,
+    param = ['conductivity',
+          'temperature',
+          #'pressure',
+          'temperature1',
+          'dissolved_o2_concentration',
+          'par',
+          'ph',
+          'chlorophyll-a',
+          'fdom',
+          'turbidity',
+          # 'sea_pressure',
+          'depth',
+          'salinity',
+          # 'speed_of_sound',
+          # 'specific_conductivity',
+          # 'dissolved_o2_saturation',
+          # 'velocity',
+          'density_anomaly'
+          ]
+)
 
-# function to convert the downcast file into the good format for SOMLIT DB
-rsksproc.toSomlitDB('/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240606/downcast/231853_20240607_1104 somlit 21_profile0.csv',
-                    '/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240606/downcast/4Somlit.csv')
+
+
+
 
