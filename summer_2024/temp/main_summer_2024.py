@@ -26,12 +26,19 @@ import sensor_uncertainties as sun
 path = "/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/summer_2024/temp"
 
 
-# First we gonna check if there is multiple rsk files, the check if there is duplicate:
-# meaning rsk files containing the same data for the same day
-# then we have a clear list of rsk files to process
+# First we gonna check if there is multiple rsk files in path folder
+# Then check if there is duplicate in dates meaning rsk files containing the same data for the same day
+# we remove them to keep only one file per Somlit day
+# for each day, we keep the latest
+# then we have a clear list of rsk files, one per day to process that I put in the variable
+# files_to_process. This is to avoid reading original rsk files with no _data.rsk
 
-rsksproc.scan_rsk(path)
+files_to_process = rsksproc.scan_rsk(path)
 
+
+# issue: when copying a rsk file the size is smaller 
+# perhaps loss of data
+# when doing RSK2RSK we loose the label in the cast 
 
 
 # Then we will process each rsk file (daily files) one after the other and store the data in dedicated folders
@@ -40,10 +47,11 @@ rsksproc.scan_rsk(path)
 
 rsksproc.process_rsk_folder(
     path_in = path,
+    list_of_rsk = files_to_process,
     site_id =5,
     patm = 10.1325,
-    p_tresh = 0.4,
-    c_tresh = 5,
+    p_tresh = 0.4, #0.4 for multiple rsk // 0.05 for simple profile
+    c_tresh = 5, #5 for multiple rsk // 0.5 for simple profile
     param = ['conductivity',
           'temperature',
           #'pressure',
@@ -62,8 +70,8 @@ rsksproc.process_rsk_folder(
           # 'dissolved_o2_saturation',
           # 'velocity',
           'density_anomaly'
-          ]
-)
+          ] )
+   
 
 
 

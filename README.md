@@ -21,4 +21,6 @@ The main reference found on the web for processing RBR CTD data is Halverson et 
 
 We also test a RBR routine on other rsk files as per the folders visible in this repo.
 
+30/06/2025, updated main_summer_2024.py and checked that works fine. Next improvment to input the somlit number in a the folder name and perhaps on the graphs
+
 
