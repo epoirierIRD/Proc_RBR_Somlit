@@ -1,0 +1,8 @@
+Processing steps for intercomparison
+- Run main-20240130.py
+- This creates a folder with the name of the rsk file to process, scv files for up and down cast and figures with up and down cast
+- run SBE_rbr_...py to perform the comparison with SBE
+to rune this program nothing has been changed on rbr data
+however sbe profil has been exported from xlsx to csv and then split in two parts up and down cast
+
+beware that sometimes, sbe profile is longer or shorter thatn RBR with one or 2 values at the boundaries

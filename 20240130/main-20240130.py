@@ -20,6 +20,7 @@ import sensor_uncertainties as sun
 
 rsksproc.process_rsk_folder(
     path_in="/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240130/rawdata",
+    list_of_rsk = ['/home/epoirier/Documents/PROJETS/2025/Proc_RBR_Somlit/20240130/rawdata/maestroP2I_231853_20240130_rebuilt.rsk'],
     site_id=5,
     patm = 10.1325,
     p_tresh = 0.4,
